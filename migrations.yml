@@ -1,0 +1,4 @@
+name: ECDB Migrations
+migrations_namespace: EcdbMigrations
+table_name: migrations
+migrations_directory: sql/migrations
