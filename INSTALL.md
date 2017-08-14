@@ -50,6 +50,14 @@ grant user access to `dcdb` database:
 mysql> GRANT ALL PRIVILEGES ON ecdb.* TO 'ecdb'@'localhost';
 ```
 
+## Applying database changes
+
+To create initial database based on original [ecdb.sql](https://github.com/petslane/ecDB/blob/v0.3.0/ecdb.sql) DB dump
+or apply all new changes in database, execute command:
+```bash
+./console.php migrations:migrate
+```
+
 ## Setup web server
 
 ### Apache
