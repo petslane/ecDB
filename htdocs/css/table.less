@@ -1,0 +1,125 @@
+table.globalTables {
+	width: 100%;
+	position: relative;
+	thead {
+		tr {
+			th {
+				padding: 0 0 5px;
+				font-weight: bold;
+				text-transform: uppercase;
+				font-size: 11px;
+				border-bottom: 2px solid #ccc;
+				&:nth-child(2) {
+					text-align: left;
+				}
+			}
+		}
+	}
+	tbody {
+		tr {
+			&:hover {
+				background-color: @background_color_10;
+				td.edit {
+					a {
+						visibility: visible;
+					}
+				}
+			}
+			td {
+				text-align: center;
+				padding: 5px 0;
+				line-height: 18px;
+				&:nth-child(2) {
+					text-align: left;
+				}
+				a.thumbnail {
+					position: relative;
+					span.imgB {
+						background-color: @background_color_7;
+						padding: 15px;
+						line-height: 0;
+						border-radius: 3px;
+						-moz-border-radius: 3px;
+						-webkit-border-radius: 3px;
+						box-shadow: 0 0 3px #666;
+						-moz-box-shadow: 0 0 3px #666;
+						-webkit-box-shadow: 0 0 3px #666;
+						position: absolute;
+						left: 32px;
+						bottom: -20px;
+						visibility: hidden;
+						z-index: 1;
+						img {
+							max-width: 260px;
+						}
+					}
+					&:hover {
+						span.imgB {
+							visibility: visible;
+						}
+					}
+				}
+			}
+			td.comment {
+				div {
+					position: relative;
+					overflow: visible;
+					span.comment {
+						border: 5px solid #fff;
+						margin: 0 65px 0 0;
+						max-height: 210px;
+						overflow-y: auto;
+						overflow-x: hidden;
+						border-radius: 3px;
+						-moz-border-radius: 3px;
+						-webkit-border-radius: 3px;
+						box-shadow: 0 0 5px #494949;
+						-moz-box-shadow: 0 0 5px #494949;
+						-webkit-box-shadow: 0 0 5px #494949;
+						padding: 8px;
+						display: none;
+						z-index: 1000;
+						text-align: left;
+						position: absolute;
+						width: 250px;
+						color: @color_3;
+						bottom: 5px;
+						right: 0px;
+						background-color: @background_color_7;
+					}
+				}
+				&:hover {
+					div {
+						span.comment {
+							display: block;
+						}
+					}
+				}
+			}
+			td.edit {
+				padding-left: 3px;
+				a {
+					visibility: hidden;
+				}
+			}
+		}
+	}
+	&.noHover {
+		tbody {
+			tr {
+				&:hover {
+					background-color: @background_color_7;
+				}
+			}
+		}
+	}
+	&.leftAlign {
+		tbody {
+			tr {
+				td {
+					text-align: left;
+				}
+			}
+		}
+	}
+}
