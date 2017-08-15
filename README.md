@@ -45,6 +45,10 @@ Currently there is no documentation available. Please feel free to create it!
 -  PHP Version 5.5 or above.
 -  MySQL Version 5.0 or above.
 
+## Developers
+
+See [DEVELOPMENT.md](DEVELOPMENT.md)
+
 ## Contributing
 
 ecDB is a community driven project and accepts contributions of code
