@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "dev": "lessc htdocs/css/style.less htdocs/css/style.css",
+    "build": "lessc -x htdocs/css/style.less htdocs/css/style.css"
+  },
+  "devDependencies": {
+    "less": "^2.7.2"
+  }
+}

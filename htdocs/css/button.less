@@ -1,0 +1,42 @@
+button.button {
+	color: @color_3;
+	cursor: pointer;
+	font: bold 12px arial, sans-serif;
+	line-height: 20px;
+	font-size: 12px;
+	letter-spacing: .5px;
+	border: 0;
+	background-color: @background_color_3;
+	padding: 6px 18px;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	-wekit-border-radius: 2px;
+
+	&:hover {
+		background-color: @background_color_4;
+	}
+
+	&.small {
+		padding: 1.5px 3px;
+		font-size: 10px;
+	}
+
+	&.green {
+		&:hover {
+			background-color: @background_color_5;
+		}
+		background-color: @background_color_8;
+		color: @color_4;
+	}
+	&.red {
+		&:hover {
+			background-color: @background_color_6;
+		}
+		background-color: @background_color_9;
+		color: @color_4;
+	}
+	&.white {
+		background-color: @background_color_7;
+		padding: 0;
+	}
+}

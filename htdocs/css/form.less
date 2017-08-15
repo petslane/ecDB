@@ -1,0 +1,97 @@
+form {
+	textarea,
+	select,
+	input {
+		border-radius: 2px;
+		-moz-border-radius: 2px;
+		-webkit-border-radius: 2px;
+		padding: 6px;
+		font: normal 13px "Century Gothic", arial, sans-serif;
+		border: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		resize: none;
+		background-color: @background_color_1;
+		&:focus {
+			background-color: @background_color_2;
+		}
+	}
+	input.small {
+		width: 40px;
+	}
+	input.medium {
+		width: 200px;
+	}
+	input.big {
+		width: 300px;
+	}
+}
+.globalForms {
+	&.inLine {
+		display: inline-block;
+	}
+	div.textInput ,
+	div.radio ,
+	div.select {
+		margin: 0 0 5px;
+		div.input {
+			display: inline-block;
+		}
+		div.info {
+			margin: 0 0 10px 154px;
+			color: @color_1;
+			font-size: 12px;
+		}
+		label.keyWord {
+			display: inline-block;
+			width: 140px;
+			margin: 0 5px 0;
+			padding: 6px 0;
+			text-align: right;
+		}
+	}
+	div.select {
+		label.keyWord {
+			float: left;
+			margin: 0 7px 0;
+		}
+	}
+	div.textBoxInput {
+		margin: 0 0 5px;
+		label.keyWord {
+			width: 140px;
+			display: inline-block;
+			margin: 0 0 3px;
+		}
+		div.text {
+			display: block;
+			textarea {
+				width: 857px;
+			}
+		}
+	}
+
+	div.separator {
+		height: 1px;
+		margin: 15px 0;
+		&.dashed {
+			border-bottom: 1px dashed #cecece;
+		}
+	}
+	select {
+		width: 214px;
+	}
+	div.buttons {
+		margin: 0 0 0 153px;
+	}
+	div.validating {
+		margin: 0 0 20px 170px;
+		color: @color_2;
+	}
+	&.noPadding {
+		div.buttons {
+			margin: 5px 0 0 0;
+			padding: 10px 0 0 0;
+			border-top: 1px solid #f2f2f2;
+		}
+	}
+}
