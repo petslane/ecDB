@@ -36,6 +36,12 @@ $container['ComponentController'] = function ($container) use ($app) {
 $container['AjaxController'] = function ($container) use ($app) {
     return new \Ecdb\Controllers\AjaxController($app);
 };
+$container['CmsController'] = function ($container) use ($app) {
+    return new \Ecdb\Controllers\CmsController($app);
+};
+$container['AdminController'] = function ($container) use ($app) {
+    return new \Ecdb\Controllers\AdminController($app);
+};
 $container['view'] = function ($container) use ($ECDB_VERSION, $config) {
     $smarty = new Smarty();
     $smarty->setTemplateDir(__DIR__ . '/../views');

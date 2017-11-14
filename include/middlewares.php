@@ -62,13 +62,42 @@ $app->add(function ($request, $response, $next) {
         'project',
     );
 
+    if ($name === 'cms') {
+        // CMS page, get all public CMS pages from DB
+        $name .= ':' . $route->getArgument('page', '');
+
+        $public_cms_names = $this->get('db')->fetchAll('
+        SELECT CONCAT("cms:", c.name) as cms_name
+          FROM cms_pages c
+         WHERE c.visibility = 1', array());
+        $public_cms_names = array_map(function ($row) {
+            return $row['cms_name'];
+        }, $public_cms_names);
+
+        $public_route_names = array_merge($public_route_names, $public_cms_names);
+    }
+
     if (empty($_SESSION['SESS_MEMBER_ID']) && !in_array($name, $public_route_names)) {
         $path = $this->get('router')->pathFor('login');
         return $response->withRedirect($path);
     }
 
     $admin_route_names = array(
-
+        'admin',
+        'admin_cms',
+        'admin_cms_new',
+        'admin_cms_new_save',
+        'admin_cms_view',
+        'admin_cms_edit',
+        'admin_cms_delete',
+        'admin_cms_md_preview',
+        'admin_menu',
+        'admin_menu_edit',
+        'admin_menu_edit_save',
+        'admin_menu_new',
+        'admin_menu_new_save',
+        'admin_menu_delete',
+        'ajax_admin_sort',
     );
 
     if ((empty($_SESSION['SESS_MEMBER_ID']) || empty($_SESSION['SESS_IS_ADMIN'])) && in_array($name, $admin_route_names)) {
