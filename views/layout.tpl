@@ -56,20 +56,55 @@
 
     <div id="menu">
         <ul>
-            {if $smarty.session.SESS_MEMBER_ID}
-                <li><a href="{$base_url}/" class="{if $selected_menu=="components"}selected{/if}"><span class="icon medium inbox"></span> My components</a></li>
-                <li><a href="{$base_url}/component/add" class="{if $selected_menu=="component_add"}selected{/if}"><span class="icon medium sqPlus"></span> Add component</a></li>
-                <li><a href="{$base_url}/shoplist" class="{if $selected_menu=="shop_list"}selected{/if}"><span class="icon medium shopCart"></span> Shopping list</a></li>
-                <li><a href="{$base_url}/proj_list" class="{if $selected_menu=="projects"}selected{/if}"><span class="icon medium cube"></span> Projects</a></li>
-                <li><a href="{$base_url}/my" class="{if $selected_menu=="my"}selected{/if}"><span class="icon medium user"></span> My account</a></li>
-                <li class="public"><a href="{$base_url}/components/public" class="{if $selected_menu=="components_public"}selected{/if}"><span class="icon medium shre"></span> Public components</a></li>
-                <li class="donate"><a href="{$base_url}/donate" class="{if $selected_menu=="donate"}selected{/if}"><span class="icon medium curDollar"></span> Donate</a></li>
-            {/if}
-            {if !$smarty.session.SESS_MEMBER_ID}
-                <li><a href="{$base_url}/" class="{if $selected_menu=="Login"}selected{/if}"><span class="icon medium key"></span> Login</a></li>
-                <li><a href="{$base_url}/register" class="{if $selected_menu=="Register"}selected{/if}"><span class="icon medium user"></span> Register</a></li>
-                <li><a href="{$base_url}/about" class="{if $selected_menu=="About"}selected{/if}"><span class="icon medium document"></span> About</a></li>
-            {/if}
+            {foreach $menu_items as $menu_item}
+                {if $menu_item.visibility == "1" && !$smarty.session.SESS_MEMBER_ID
+                 || $menu_item.visibility == "2" && $smarty.session.SESS_MEMBER_ID
+                 || $menu_item.visibility == "3" && $smarty.session.SESS_IS_ADMIN}
+                    {assign var="select_route_names" value=','|@explode:$menu_item.select_route_names}
+                    {if $menu_item.base_color}
+                        <style>
+                            div#menu ul li.menu-custom-color-{$menu_item.id} a {
+                                border-bottom: 1px solid {$menu_item.base_color};
+                                background-color: {$menu_item.base_color|menuColorBackground};
+                                background-image: -moz-linear-gradient(100% 100% 90deg, {$menu_item.base_color|menuColorBackground}, #f8f8f8);
+                                background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f8f8f8), to({$menu_item.base_color|menuColorBackground}));
+                            }
+                            div#menu ul li.menu-custom-color-{$menu_item.id} a:hover {
+                                background-color: {$menu_item.base_color|menuColorBackground};
+                                background-image: none;
+                            }
+                            div#menu ul li.menu-custom-color-{$menu_item.id} a.selected {
+                                background-image: none;
+                                background-color: #ffffff;
+                                border-bottom: 1px solid #ffffff;
+                            }
+                        </style>
+
+                    {/if}
+                    <li class="menu-custom-color-{$menu_item.id}">
+                        {assign var="class" value=""}
+                        {if $menu_route_name|@in_array:$select_route_names}
+                            {assign var="class" value="selected"}
+                        {/if}
+                        <a
+                                {if $menu_item.type == 1}
+                                    href="{pathFor name=$menu_item.link}"
+                                {elseif $menu_item.type == 2}
+                                    href="{pathFor name="cms" page=$menu_item.cms_link}"
+                                {else}
+                                    href="{$menu_item.link}"
+                                {/if}
+                                class="{$class}">
+                            {if $menu_item.icon|@substr:0:4 == "old-"}
+                                <span class="icon medium {$menu_item.icon|@substr:4}"></span>
+                            {elseif $menu_item.icon}
+                                {mdIcon name=$menu_item.icon size=16}
+                            {/if}
+                            {$menu_item.title}
+                        </a>
+                    </li>
+                {/if}
+            {/foreach}
         </ul>
     </div>
 
