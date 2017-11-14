@@ -2,8 +2,6 @@
 
 namespace Ecdb\Controllers;
 
-use Doctrine\DBAL\Driver\DrizzlePDOMySql\Connection;
-
 class ComponentController extends BaseController {
 
     public function search(\Slim\Http\Request $req, \Slim\Http\Response $response, $args) {
@@ -61,13 +59,6 @@ class ComponentController extends BaseController {
         $this->view->assign('selected_menu', 'search');
 
         return $this->render('components_search.tpl');
-    }
-
-    public function public_listing(\Slim\Http\Request $req, \Slim\Http\Response $response, $args) {
-
-        $this->view->assign('selected_menu', 'components_public');
-
-        return $this->render('components_public.tpl');
     }
 
     public function save(\Slim\Http\Request $req, \Slim\Http\Response $response, $args) {

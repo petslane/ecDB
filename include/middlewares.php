@@ -53,13 +53,7 @@ $app->add(function ($request, $response, $next) {
     $public_route_names = array(
         'login',
         'register',
-        'about',
-        'projects',
         'auth',
-        'terms',
-        'contact',
-        'donate',
-        'project',
     );
 
     if ($name === 'cms') {

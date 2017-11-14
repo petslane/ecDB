@@ -9,23 +9,11 @@ $container['LoginController'] = function ($container) use ($app) {
 $container['RegisterController'] = function ($container) use ($app) {
     return new \Ecdb\Controllers\RegisterController($app);
 };
-$container['AboutController'] = function ($container) use ($app) {
-    return new \Ecdb\Controllers\AboutController($app);
-};
 $container['ProjectController'] = function ($container) use ($app) {
     return new \Ecdb\Controllers\ProjectController($app);
 };
 $container['MemberController'] = function ($container) use ($app) {
     return new \Ecdb\Controllers\MemberController($app);
-};
-$container['TermsController'] = function ($container) use ($app) {
-    return new \Ecdb\Controllers\TermsController($app);
-};
-$container['ContactController'] = function ($container) use ($app) {
-    return new \Ecdb\Controllers\ContactController($app);
-};
-$container['DonateController'] = function ($container) use ($app) {
-    return new \Ecdb\Controllers\DonateController($app);
 };
 $container['ShopController'] = function ($container) use ($app) {
     return new \Ecdb\Controllers\ShopController($app);
