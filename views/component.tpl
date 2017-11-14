@@ -11,7 +11,7 @@
         }
         function ajax_post(component_id, field, increase, callback) {
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', '{$base_url}/ajax/change_component_count_field');
+            xhr.open('POST', '{pathFor name="ajax_component_count"}');
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = function() {
                 if (xhr.status === 200) {

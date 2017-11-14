@@ -18,7 +18,7 @@
         {if !$new_component}
         function ajax_post(component_id, field, increase, callback) {
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', '{$base_url}/ajax/change_component_count_field');
+            xhr.open('POST', '{pathFor name="ajax_component_count"}');
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = function() {
                 if (xhr.status === 200) {
@@ -55,29 +55,19 @@
         }
         {/if}
     </script>
-
-    <script type="text/javascript" src="{$base_url}/js/jquery.autocomplete.js"></script>
-    <link rel="stylesheet" type="text/css" href="{$base_url}/css/jquery.autocomplete.css" />
-
     <script type="text/javascript">
         $(function() {
-            $("#name").autocomplete("{$base_url}/ajax/autocomplete?f=name", {
-                width: 150,
-                matchContains: true,
-                minChars: 2,
-                selectFirst: false
+            $("#name").autocomplete({
+                source: "{pathFor name="ajax_autocomplete"}?f=name",
+                minLength: 2
             });
-            $("#package").autocomplete("{$base_url}/ajax/autocomplete?f=package", {
-                width: 150,
-                matchContains: true,
-                minChars: 2,
-                selectFirst: false
+            $("#package").autocomplete({
+                source: "{pathFor name="ajax_autocomplete"}?f=package",
+                minLength: 2
             });
-            $("#manufacturer").autocomplete("{$base_url}/ajax/autocomplete?f=manufacturer", {
-                width: 150,
-                matchContains: true,
-                minChars: 2,
-                selectFirst: false
+            $("#manufacturer").autocomplete({
+                source: "{pathFor name="ajax_autocomplete"}?f=manufacturer",
+                minLength: 2
             });
         });
     </script>
