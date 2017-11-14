@@ -68,9 +68,16 @@ class MemberController extends BaseController {
                 if ($oldpass && $newpass) {
                     $data['passwd'] = md5($newpass);
                 }
-                $this->db->update('members', $data, array(
-                    'member_id' => $owner,
+                $login = $this->db->fetchColumn('SELECT login from members where member_id = ?', array(
+                    $_SESSION['SESS_MEMBER_ID'],
                 ));
+                if ($login !== 'demo') {
+                    $this->db->update('members', $data, array(
+                        'member_id' => $owner,
+                    ));
+                } else {
+                    $_SESSION['info'][] = 'This is Demo account, data is not actually saved';
+                }
                 $_SESSION['messages'][] = 'Settings updated';
                 return $this->redirect($response, 'my');
             }
