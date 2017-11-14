@@ -38,15 +38,26 @@ class LoginController extends BaseController {
             return $response->withRedirect('login');
         }
 
-        $data = $this->db->fetchAssoc('SELECT * FROM members WHERE login=? AND passwd=?', array(
+        $data = $this->db->fetchAssoc('SELECT * FROM members WHERE login = ?', array(
             $login,
-            md5($_POST['password']),
         ));
 
-        if (!$data) {
+        $validatePassword = $this->app->getContainer()->get('validatePassword');
+        if (!$data || !$validatePassword($_POST['password'], $data['passwd'])) {
             $_SESSION['ERRMSG_ARR'] = 'Invalid username/password';
 
             return $response->withRedirect('login');
+        }
+
+        // detect md5 password hash
+        if (strlen($data['passwd']) == 32) {
+            // generate new password hash
+            $passwordHash = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $this->db->update('members', array(
+                'passwd' => $passwordHash,
+            ), array(
+                'member_id' => $data['member_id'],
+            ));
         }
 
         //Login Successful
