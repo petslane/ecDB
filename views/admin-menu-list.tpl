@@ -3,7 +3,7 @@
 {block name=title}Admin - ecDB{/block}
 
 {block name=head}
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script>
         $(function () {
             $("#sortable").sortable({
