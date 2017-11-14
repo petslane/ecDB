@@ -2,20 +2,7 @@
 
 {block name=title}Viewing project - {$project.project_name} - ecDB{/block}
 
-{block name=head}
-    <script type="text/javascript" src="include/autocomplete/jquery.autocomplete.js"></script>
-    <link rel="stylesheet" type="text/css" href="include/autocomplete/jquery.autocomplete.css" />
-    <script type="text/javascript">
-        $().ready(function() {
-            $("#name").autocomplete("include/autocomplete/autocomplete_name_owner.php?memberID=<?php echo $_SESSION['SESS_MEMBER_ID'] ?>", {
-                width: 150,
-                matchContains: true,
-                minChars: 2,
-                selectFirst: false,
-            });
-        });
-    </script>
-{/block}
+{block name=head}{/block}
 
 {block name=body}
     <h1>
