@@ -36,5 +36,25 @@ class SmartyPlugins {
         return $path;
     }
 
+    /**
+     * Helper for Material Design icons
+     *
+     * @param array $params
+     * @param $smarty
+     * @return string
+     */
+    public function mdIcon($params, &$smarty) {
+        if (empty($params['name'])) {
+            return '';
+        }
+        if (empty($params['size'])) {
+            return '';
+        }
+
+        $name = $params['name'];
+        $size = $params['size'];
+
+        return "<i class=\"material-icons\" style=\"font-size: {$size}px; width: {$size}px; height: {$size}px; vertical-align: bottom;\">$name</i>";
+    }
 }
 

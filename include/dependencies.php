@@ -59,6 +59,7 @@ $container['view'] = function ($container) use ($ECDB_VERSION, $config) {
 
     $sp = new \Ecdb\Smarty\SmartyPlugins($container);
     $smarty->registerPlugin('function', 'pathFor', array($sp, 'pathFor'), false);
+    $smarty->registerPlugin('function', 'mdIcon', array($sp, 'mdIcon'), false);
 
     return $smarty;
 };
