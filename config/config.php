@@ -2,7 +2,10 @@
 
 $config = array();
 
-$config['debug'] = true;
+/**
+ * Enable showing detailed error messages on application exceptions. Useful for developing.
+ */
+$config['debug'] = false;
 
 $config['db'] = array(
     'host' => 'localhost',

@@ -13,6 +13,7 @@ require_once __DIR__ . '/../setup.php';
 $app = new \Slim\App(array(
     'settings' => array(
         'determineRouteBeforeAppMiddleware' => true,
+        'displayErrorDetails' => !empty($config['debug']),
     ),
 ));
 
