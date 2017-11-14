@@ -31,6 +31,23 @@ $app->get('/terms', 'TermsController:index')->setName('terms');
 $app->get('/contact', 'ContactController:index')->setName('contact');
 $app->get('/donate', 'DonateController:index')->setName('donate');
 $app->get('/shoplist', 'ShopController:index')->setName('shoplist');
+$app->get('/admin', 'AdminController:index')->setName('admin');
+$app->get('/admin/cms', 'CmsController:admin')->setName('admin_cms');
+$app->get('/admin/cms/new', 'CmsController:create')->setName('admin_cms_new');
+$app->post('/admin/cms/new', 'CmsController:save_new')->setName('admin_cms_new_save');
+$app->get('/admin/cms/{id}', 'CmsController:view')->setName('admin_cms_view');
+$app->get('/admin/cms/{id}/edit', 'CmsController:edit')->setName('admin_cms_edit');
+$app->post('/admin/cms/{id}/edit', 'CmsController:save')->setName('admin_cms_edit');
+$app->post('/admin/cms/{id}/delete', 'CmsController:delete')->setName('admin_cms_delete');
+$app->post('/admin/cms/md-preview', 'CmsController:ajax_preview')->setName('admin_cms_md_preview');
+$app->get('/admin/menu', 'AdminController:menu')->setName('admin_menu');
+$app->get('/admin/menu/{id}/edit', 'AdminController:menu_edit')->setName('admin_menu_edit');
+$app->post('/admin/menu/{id}/edit', 'AdminController:menu_save')->setName('admin_menu_edit_save');
+$app->get('/admin/menu/new', 'AdminController:menu_new')->setName('admin_menu_new');
+$app->post('/admin/menu/new', 'AdminController:menu_save')->setName('admin_menu_new_save');
+$app->post('/admin/menu/{id}/delete', 'AdminController:menu_delete')->setName('admin_menu_delete');
+$app->post('/ajax/admin/menu/sort', 'AdminController:ajax_menu_sort')->setName('ajax_admin_sort');
+$app->get('/{page}', 'CmsController:index')->setName('cms');
 
 // redirect to php file
 $app->any('/{filename}.php', function ($request, \Slim\Http\Response $response, $args) {
