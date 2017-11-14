@@ -357,7 +357,6 @@ class ComponentController extends BaseController {
         $this->view->assign('sub_category_id', $sub_category_id);
         $this->view->assign('components', $components);
         $this->view->assign('order', $order);
-        $this->view->assign('selected_menu', 'components');
 
         return $this->render('components.tpl');
     }
@@ -409,7 +408,6 @@ class ComponentController extends BaseController {
         $this->view->assign('project', $project);
         $this->view->assign('projects', $this->getAllProjects());
         $this->view->assign('category_tree', $this->getCategoryTree());
-        $this->view->assign('selected_menu', 'components');
 
         return $this->render('component_edit.tpl');
     }
@@ -504,7 +502,6 @@ class ComponentController extends BaseController {
         $this->view->assign('member_settings', $member_settings);
         $this->view->assign('category', $category);
         $this->view->assign('project', $project);
-        $this->view->assign('selected_menu', 'components');
 
         return $this->render('component.tpl');
     }
@@ -548,7 +545,6 @@ class ComponentController extends BaseController {
         $this->view->assign('category_tree', $this->getCategoryTree());
         $this->view->assign('new_component', true);
         $this->view->assign('id_based', $id_based);
-        $this->view->assign('selected_menu', 'component_add');
 
         return $this->render('component_edit.tpl');
     }

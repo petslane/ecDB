@@ -50,6 +50,25 @@ SQL
 SQL
         );
 
+
+        $this->addSql(<<<SQL
+            INSERT INTO menu
+                (title, base_color, sort_nr, icon, type, link, visibility, select_route_names)
+            VALUES
+                ('My components', '', 1, 'old-inbox', 1, 'index', 2, 'index,component,component_edit'),
+                ('Add component', '', 2, 'old-sqPlus', 1, 'component_add', 2, 'component_add'),
+                ('Shopping list', '', 3, 'old-shopCart', 1, 'shoplist', 2, 'shoplist'),
+                ('Projects', '', 4, 'old-cube', 1, 'projects', 2, 'projects,project_edit,project'),
+                ('My account', '', 5, 'old-user', 1, 'member_edit', 2, 'member_edit'),
+                ('Public components', '#bbdbff', 6, 'old-shre', 2, '2', 0, 'cms:2'),
+                ('Donate', '#8aea6f', 7, 'old-curDollar', 2, '1', 2, 'cms:1'),
+                ('Admin', '#ec4d4d', 8, 'settings', 1, 'admin', 3, 'admin,admin_cms,admin_menu,admin_cms_new,admin_cms_new_save,admin_cms_view,admin_cms_edit,admin_cms_delete'),
+                ('Login', '', 9, 'old-key', 1, 'login', 1, 'login'),
+                ('Register', '', 10, 'old-user', 1, 'register', 1, 'register'),
+                ('About', '', 11, 'old-document', 2, '3', 1, 'cms:3')
+SQL
+        );
+
         $this->addSql(<<<SQL
 INSERT INTO cms_pages (id, name, content, title, visibility) VALUES (1, 'donate', 'ecDB is completely free!
 

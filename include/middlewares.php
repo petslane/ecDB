@@ -37,6 +37,30 @@ $app->add(function ($request, $response, $next) {
 });
 
 $app->add(function ($request, $response, $next) {
+    /** @var Doctrine\DBAL\Connection $db */
+    $db = $this->get('db');
+
+    $data = $db->fetchAll('
+        SELECT m.*
+             , c.name as cms_link
+          FROM menu m
+     LEFT JOIN cms_pages c ON c.id = m.link
+      ORDER BY sort_nr ASC', array());
+
+    $route = $request->getAttribute('route');
+    $menu_route_name = $route->getName();
+    if ($menu_route_name === 'cms') {
+        $cms_page_name = $route->getArgument('page', '');
+        $cms_page = $db->fetchAssoc('SELECT * FROM cms_pages WHERE name = ?', array($cms_page_name));
+        $menu_route_name .= ':' . (!empty($cms_page['id']) ? $cms_page['id'] : '');
+    }
+    $this->view->assign('menu_route_name', $menu_route_name);
+    $this->view->assign('menu_items', $data);
+
+    return $next($request, $response);
+});
+
+$app->add(function ($request, $response, $next) {
     $route = $request->getAttribute('route');
 
     // index for non existent route

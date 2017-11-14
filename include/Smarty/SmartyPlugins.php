@@ -14,6 +14,29 @@ class SmartyPlugins {
     }
 
     /**
+     * Helper function for
+     *
+     * @param $params
+     * @return string
+     */
+    public function menuColorBackground($params) {
+        $colors = sscanf($params, '#%02x%02x%02x');
+        if (in_array(null, $colors)) {
+            return $params;
+        }
+
+        $colors[0] += (255 - $colors[0]) * 0.45;
+        $colors[1] += (255 - $colors[1]) * 0.45;
+        $colors[2] += (255 - $colors[2]) * 0.45;
+
+        foreach ($colors as &$color) {
+            $color = min(max($color, 0), 255);
+        }
+
+        return vsprintf('#%02x%02x%02x', $colors);
+    }
+
+    /**
      * Get url path by route name
      *
      * @param array $params
