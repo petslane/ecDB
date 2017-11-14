@@ -58,6 +58,15 @@ $container['view'] = function ($container) use ($ECDB_VERSION, $config) {
 
     return $smarty;
 };
+$container['validatePassword'] = function ($container) use ($app) {
+    return function ($password, $passwordHash) {
+        if (strlen($passwordHash) == 32) {
+            return md5($password) == $passwordHash;
+        }
+
+        return password_verify($password, $passwordHash);
+    };
+};
 
 $container['db'] = function ($container) use ($config) {
     $c = new \Doctrine\DBAL\Configuration();

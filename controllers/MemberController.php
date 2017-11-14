@@ -5,12 +5,12 @@ namespace Ecdb\Controllers;
 class MemberController extends BaseController {
 
     private function inPasswordValid($member_id, $password) {
-        $data = $this->db->fetchAssoc('SELECT COUNT(*) AS c FROM members WHERE member_id = ? AND passwd = ?', array(
+        $passwordHash = $this->db->fetchColumn('SELECT passwd FROM members WHERE member_id = ?', array(
             $member_id,
-            md5($password),
         ));
 
-        return !empty($data['c']);
+        $validatePassword = $this->app->getContainer()->get('validatePassword');
+        return $validatePassword($password, $passwordHash);
     }
 
     public function edit(\Slim\Http\Request $req, \Slim\Http\Response $response, $args) {
@@ -61,12 +61,11 @@ class MemberController extends BaseController {
                     'firstname' => $firstname,
                     'lastname' => $lastname,
                     'mail' => $mail,
-                    'passwd' => md5($newpass),
                     'measurement' => $measurement,
                     'currency' => $currency,
                 );
                 if ($oldpass && $newpass) {
-                    $data['passwd'] = md5($newpass);
+                    $data['passwd'] = password_hash($newpass, PASSWORD_BCRYPT);
                 }
                 $login = $this->db->fetchColumn('SELECT login from members where member_id = ?', array(
                     $_SESSION['SESS_MEMBER_ID'],
@@ -101,7 +100,7 @@ class MemberController extends BaseController {
 
         $this->view->assign('selected_menu', 'my');
 
-        return $this->view->display('member.tpl');
+        return $this->render('member.tpl');
     }
 
 }

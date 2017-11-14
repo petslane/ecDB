@@ -80,13 +80,15 @@ class RegisterController extends BaseController {
             return $this->render('registration.tpl');
         }
 
+        $passwordHash = password_hash($_POST['password'], PASSWORD_BCRYPT);
+
         //Create INSERT query
         $added = $this->db->insert('members', array(
             'firstname' => $fname,
             'lastname' => $lname,
             'login' => $login,
             'mail' => $mail,
-            'passwd' => md5($_POST['password']),
+            'passwd' => $passwordHash,
         ));
 
         $_SESSION['messages'][] = 'User created';
