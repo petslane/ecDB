@@ -10,7 +10,6 @@ $app->get('/component/add', 'ComponentController:add')->setName('component_add')
 $app->get('/component/add/{id:[0-9]+}', 'ComponentController:add')->setName('component_add');
 $app->post('/component/add', 'ComponentController:save')->setName('component_add');
 $app->post('/component/add/{id:[0-9]+}', 'ComponentController:save')->setName('component_add');
-$app->get('/components/public', 'ComponentController:public_listing')->setName('components_public');
 $app->get('/components/search', 'ComponentController:search')->setName('search');
 $app->post('/ajax/change_component_count_field', 'AjaxController:component_count')->setName('ajax_component_count');
 $app->get('/ajax/autocomplete', 'AjaxController:autocomplete')->setName('ajax_autocomplete');
@@ -19,7 +18,6 @@ $app->post('/auth', 'LoginController:auth')->setName('auth');
 $app->get('/logout', 'LoginController:logout')->setName('logout');
 $app->get('/register', 'RegisterController:index')->setName('register');
 $app->post('/register', 'RegisterController:register')->setName('register');
-$app->get('/about', 'AboutController:index')->setName('about');
 $app->get('/proj_list', 'ProjectController:projects')->setName('projects');
 $app->post('/project_add', 'ProjectController:add')->setName('project_add');
 $app->get('/project/{id}/edit', 'ProjectController:edit')->setName('project_edit');
@@ -27,9 +25,6 @@ $app->post('/project/{id}/edit', 'ProjectController:edit')->setName('project_edi
 $app->get('/project/{id}', 'ProjectController:view')->setName('project');
 $app->get('/my', 'MemberController:edit')->setName('member_edit');
 $app->post('/my', 'MemberController:edit')->setName('member_edit');
-$app->get('/terms', 'TermsController:index')->setName('terms');
-$app->get('/contact', 'ContactController:index')->setName('contact');
-$app->get('/donate', 'DonateController:index')->setName('donate');
 $app->get('/shoplist', 'ShopController:index')->setName('shoplist');
 $app->get('/admin', 'AdminController:index')->setName('admin');
 $app->get('/admin/cms', 'CmsController:admin')->setName('admin_cms');
