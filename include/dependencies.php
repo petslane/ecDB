@@ -57,6 +57,9 @@ $container['view'] = function ($container) use ($ECDB_VERSION, $config) {
     );
     $smarty->assign('STATS', $STATS);
 
+    $sp = new \Ecdb\Smarty\SmartyPlugins($container);
+    $smarty->registerPlugin('function', 'pathFor', array($sp, 'pathFor'), false);
+
     return $smarty;
 };
 

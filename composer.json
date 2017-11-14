@@ -1,7 +1,8 @@
 {
     "autoload": {
         "psr-4": {
-            "Ecdb\\Controllers\\": "controllers/"
+            "Ecdb\\Controllers\\": "controllers/",
+            "Ecdb\\Smarty\\": "include/Smarty/"
         }
     },
     "require": {
